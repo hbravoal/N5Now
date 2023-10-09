@@ -55,6 +55,10 @@
             "Confluent.Kafka": {
               "target": "Package",
               "version": "[1.9.3, )"
+            },
+            "MongoDB.Driver": {
+              "target": "Package",
+              "version": "[2.22.0, )"
             }
           },
           "imports": [

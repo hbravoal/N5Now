@@ -2,14 +2,13 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-//using MongoDB.Driver;
 using N5.Eda.Interfaces;
 using N5.Eda.Kafka.Configurations;
 using N5.Eda.Kafka.Extensions;
 using System.Reflection;
-//using MongoDB.Driver;
 using N5.Eda.Kafka.Model;
 using N5.Eda.Extensions;
+using MongoDB.Driver;
 
 namespace N5.Eda.Kafka.Extensions;
 
@@ -38,7 +37,7 @@ public static class KafkaExtension
         services.AddTransient<IBrokerDispatcher, KafkaDispatcher>();
 
         //Database
-        //services.AddSingleton<IMongoClient>(s => new MongoClient(configuration.GetConnectionString("RequestReply")));
+        services.AddSingleton<IMongoClient>(s => new MongoClient(configuration.GetConnectionString("RequestReply")));
 
         //Init Kafka
         services.AddTransient<IAdminClient>((service) =>
