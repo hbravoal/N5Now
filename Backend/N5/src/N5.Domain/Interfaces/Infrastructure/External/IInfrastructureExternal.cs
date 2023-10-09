@@ -1,4 +1,4 @@
-﻿namespace MillionAndUp.Archiecture.Domain.Interfaces.Infrastructure.External
+﻿namespace N5.Domain.Interfaces.Infrastructure.External
 {
     /// <summary>
     /// Base implementation Infrastructure

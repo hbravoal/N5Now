@@ -1,0 +1,5 @@
+G:\MillionAndUp\N5Now\Backend\N5\src\N5.Eda.RequestReply\obj\Debug\net6.0\N5.Eda.RequestReply.csproj.AssemblyReference.cache
+G:\MillionAndUp\N5Now\Backend\N5\src\N5.Eda.RequestReply\obj\Debug\net6.0\N5.Eda.RequestReply.GeneratedMSBuildEditorConfig.editorconfig
+G:\MillionAndUp\N5Now\Backend\N5\src\N5.Eda.RequestReply\obj\Debug\net6.0\N5.Eda.RequestReply.AssemblyInfoInputs.cache
+G:\MillionAndUp\N5Now\Backend\N5\src\N5.Eda.RequestReply\obj\Debug\net6.0\N5.Eda.RequestReply.AssemblyInfo.cs
+G:\MillionAndUp\N5Now\Backend\N5\src\N5.Eda.RequestReply\obj\Debug\net6.0\N5.Eda.RequestReply.csproj.CoreCompileInputs.cache
