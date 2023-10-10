@@ -1,17 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Transactions;
+﻿
 
 namespace N5.User.Domain.Entities
 {
     public class UserPermission : Entity<int>
     {
-        public string Name { get; set; }
+      
+        /// <summary>
+        /// Employee name
+        /// </summary>
+        public string EmployeeForename { get; set; }
 
-        public string Title { get; set; }
+        /// <summary>
+        /// Employee name
+        /// </summary>
+        public string EmployeeSurname { get; set; }
 
+        /// <summary>
+        /// Permission type Id Id
+        /// </summary>
+        public int PermissionTypeId { get; set; }
+
+        /// <summary>
+        /// Permission Date
+        /// </summary>
+        public DateTime PermissionDate { get; set; }
     }
 }

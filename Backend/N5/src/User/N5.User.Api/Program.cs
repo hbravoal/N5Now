@@ -55,6 +55,7 @@ try
     {
         options.RegisterTopics(new string[] {
             EventUser.CreatePermissionComplete,
+            EventUser.CreatePermission,
             //EventRealty.GetCommentsComplete,
         });
     });

@@ -3,13 +3,14 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using N5.Eda.Interfaces;
 using N5.Eda.Kafka.Extensions;
+using N5.User.Application;
 using N5.User.Infrastructure.Persistence;
 using Serilog;
 using Serilog.Exceptions;
 using System.Globalization;
 using System.Reflection;
 
-var AppName = "N5.User.Services";
+string AppName = "N5.User.Services";
 
 var configuration = new ConfigurationBuilder()
     .SetBasePath(Directory.GetCurrentDirectory())
@@ -41,13 +42,13 @@ try
         {
             //TODO: Change for Invertion of control  Desing principe.
             services.AddKafka(configuration, Assembly.GetEntryAssembly())
-                   // .AddApplication()
+                    .AddApplication()
                     //.AddDomain()
                     .AddPersistence(context.Configuration);
         })
         .Build();
 
-    //host.UseBrokerKafka();
+    host.UseBrokerKafka();
 
     var dispacher = host.Services.GetService<IBroker>();
     ArgumentNullException.ThrowIfNull(dispacher);

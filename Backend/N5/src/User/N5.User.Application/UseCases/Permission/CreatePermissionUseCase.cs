@@ -7,7 +7,7 @@ using N5.User.Domain.DTO;
 using Throw;
 using N5.User.Application.Exceptions;
 
-namespace N5.User.Application.UseCases.Comment;
+namespace N5.User.Application.UseCases.Permission;
 
 public class CreatePermissionUseCase : UserUseCase<CreatePermissionDto, CreatePermissionCompleteDTO>
 {

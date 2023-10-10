@@ -9,15 +9,23 @@ namespace N5.User.Domain.DTO;
     public string IdSession { get; set; }
 
     /// <summary>
-    /// Document name
+    /// Employee name
     /// </summary>
-    public string Name { get; set; }
-
-   
-    public string Title { get; set; }
+    public string EmployeeForename { get; set; }
 
     /// <summary>
-    /// User Id
+    /// Employee name
     /// </summary>
-    public int UserId { get; set; }
+    public string EmployeeSurname { get; set; }
+
+    /// <summary>
+    /// Permission type Id Id
+    /// </summary>
+    public int PermissionTypeId { get; set; }
+
+    /// <summary>
+    /// Permission Date
+    /// </summary>
+    public DateTime PermissionDate { get; set; }
+
 }

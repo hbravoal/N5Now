@@ -3,7 +3,7 @@ using N5.Eda;
 using N5.Eda.Attributes;
 using N5.Eda.Interfaces;
 using N5.Event.User;
-using N5.User.Application.UseCases.Comment;
+using N5.User.Application.UseCases.Permission;
 using N5.User.Domain.DTO;
 using N5.Utilities;
 
