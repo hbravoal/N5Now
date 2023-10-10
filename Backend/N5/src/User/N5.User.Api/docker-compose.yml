@@ -1,0 +1,48 @@
+version: '3.7'
+services:
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.0.10.arm64
+    container_name: zookeeper      
+    ports:
+      - "2181:2181"
+    environment:
+      - ZOOKEEPER_SERVER_ID=1
+      - ZOOKEEPER_CLIENT_PORT=2181
+      - ZOOKEEPER_TICK_TIME=2000
+      - ZOOKEEPER_INIT_LIMIT=5
+      - ZOOKEEPER_SYNC_LIMIT=2
+    restart: unless-stopped    
+
+  kafka1:
+    image: confluentinc/cp-kafka:7.2.6-1-ubi8.arm64
+    hostname: kafka1    
+    container_name: kafka1
+    depends_on:
+      - zookeeper
+    ports:
+      - "19092:19092"      
+    environment:
+      - KAFKA_BROKER_ID=1
+      - KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1      
+      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://kafka1:9092,PLAINTEXT_HOST://localhost:19092
+      - KAFKA_LISTENER_SECURITY_PROTOCOL_MAP=PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT      
+      - KAFKA_INTER_BROKER_LISTENER_NAME=PLAINTEXT
+      - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
+      - BOOTSTRAP_SERVERS=kafka1:9092
+      - ZOOKEEPER=zookeeper:2181
+    restart: unless-stopped            
+
+  kafka-ui:
+    image: provectuslabs/kafka-ui:latest
+    container_name: kafka-ui    
+    ports:
+      - "8081:8080"   
+    depends_on:
+      - zookeeper
+      - kafka1              
+    environment:
+      KAFKA_CLUSTERS_0_NAME: Cluster1
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka1:9092
+      KAFKA_CLUSTERS_0_ZOOKEEPER: zookeeper:2181
+    restart: unless-stopped
