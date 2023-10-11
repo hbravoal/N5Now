@@ -12,3 +12,7 @@ Backend/N5/src/Architecture/N5.Eda.RequestReply/obj/
 Backend/N5/src/Architecture/N5.Domain/bin/
 
 Backend/N5/FrontEnd/n5app/public/
+
+Backend/N5/src/User/N5.User.Api/obj/
+
+*.sentinel

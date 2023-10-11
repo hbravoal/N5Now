@@ -1,15 +1,12 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
+function Home() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
+        <p>Version: {process.env.AUTH_CONFIGURATION_PROXY_BASE}</p>
         <h1 className="text-3xl font-bold underline">
       Hello world!
     </h1>
@@ -26,4 +23,5 @@ function App() {
   );
 }
 
-export default App;
+export default Home;
+
