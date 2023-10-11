@@ -1,5 +1,5 @@
 import axios, {AxiosInstance} from 'axios';
-import {NetworkError} from 'domain/exceptions/NetworkError';
+import { NetworkError } from '../domain/exceptions';
 
 /* Class that serves as a base for making HTTP requests using the Axios library.
 It defines two methods, `get` and `post`, which make GET and POST requests respectively. The class

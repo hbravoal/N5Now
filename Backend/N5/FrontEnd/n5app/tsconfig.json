@@ -1,12 +1,6 @@
 {
   "compilerOptions": {
-    "baseUrl": ".", // This must be specified if "paths" is.
-    "paths": {
-      "domain/*": ["src/domain/*"], // This mapping is relative to "baseUrl",
-      "infrastructure/*": ["src/infrastructure/*"], // This mapping is relative to "baseUrl"
-      "application/*": ["src/application/*"], // This mapping is relative to "baseUrl"
-      "presentation/*": ["src/presentation/*"], // This mapping is relative to "baseUrl"
-    },
+   
     "target": "es5",
     "lib": [
       "dom",

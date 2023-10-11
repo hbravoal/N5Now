@@ -1,4 +1,4 @@
-import { GENERAL_NETWORK_ERROR } from "domain/home/types/GeneralMessageTypes";
+import { GENERAL_NETWORK_ERROR } from "../home/types/GeneralMessageTypes";
 
 /**
  * Network error

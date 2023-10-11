@@ -1,5 +1,6 @@
 /**
  * Type for Home infrastructure
  */
-export const ICreateUserPermissionInfrastructureType = 'IHomeInfrastructure';
-export const IHomeApplicationType = 'IHomeApplication';
+export const ICreateUserPermissionInfrastructureType = 'ICreateUserPermissionInfrastructure';
+export const ICreateUserPermissionApplicationType = 'ICreateUserPermissionApplication';
+

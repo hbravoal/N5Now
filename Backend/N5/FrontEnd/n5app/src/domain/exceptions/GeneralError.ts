@@ -1,4 +1,4 @@
-import { ErrorUser } from "domain/home/enums/ErrorUser";
+import { ErrorUser } from "../home/enums/ErrorUser";
 
 /**
  * General error
