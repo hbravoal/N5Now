@@ -2,11 +2,10 @@
 using MediatR;
 using N5.Eda.Interfaces;
 using N5.Event.User;
-using N5.User.Application.UseCases.Permission;
 using N5.User.Domain.DTO;
 using N5.User.Domain.Interfaces.Persistence;
 
-namespace N5.User.Application.UseCases.Comment;
+namespace N5.User.Application.UseCases.Permission;
 
 public class CreateUserPermissionHandler : IRequestHandler<CreatePermissionUseCase, CreatePermissionCompleteDTO>
 {
@@ -35,7 +34,7 @@ public class CreateUserPermissionHandler : IRequestHandler<CreatePermissionUseCa
         };
 
         await _broker.Publish(
-           EventUser.CreatePermission,
+           EventUser.CreatePermissionComplete,
            result
        );
 

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using N5.Eda.Interfaces;
 using N5.Eda.RequestReply.Interface;
 using N5.Event.User;
 using N5.TryCatch.Extend;
@@ -12,8 +13,21 @@ namespace N5.User.Api.Controllers;
 public class PermissionController : Controller
 {
     private readonly IRequestReplyExecute _requestReply;
+    private readonly IBroker _broker;
+    public PermissionController(IRequestReplyExecute requestReply, IBroker broker) => (_requestReply,_broker)= (requestReply,broker);
 
-    public PermissionController(IRequestReplyExecute requestReply) => _requestReply = requestReply;
+   
+
+
+    [HttpPost]
+    [Route("JustCreate")]
+    [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+    [ProducesResponseType(typeof(CreatePermissionCompleteDTO), (int)HttpStatusCode.OK)]
+    public async Task<IActionResult> JustCreate([FromBody] CreatePermissionDto request)
+    {
+        await _broker.Publish(EventUser.CreatePermission, request);
+        return Ok();
+    }
 
     [HttpPost]
     [Route("Create")]

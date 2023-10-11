@@ -2388,6 +2388,7 @@
           "Dapper": "2.0.123",
           "Microsoft.EntityFrameworkCore": "7.0.1",
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.1",
+          "Microsoft.Extensions.Hosting.Abstractions": "7.0.0",
           "N5.Domain": "1.0.0",
           "N5.User.Domain": "1.0.0"
         },

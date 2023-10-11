@@ -9,6 +9,7 @@ using Serilog;
 using Serilog.Exceptions;
 using System.Globalization;
 using System.Reflection;
+using N5.User.Infrastructure.Persistence.Extension;
 
 string AppName = "N5.User.Services";
 
@@ -54,7 +55,7 @@ try
     ArgumentNullException.ThrowIfNull(dispacher);
     dispacher.Build();
     //TODO: When solve  memory database/
-    //host.ExecuteMigration(args);
+    host.ExecuteMigration(args);
 
     Log.Information("Starting Web Host ({ApplicationContext})...", AppName);
     host.Run();

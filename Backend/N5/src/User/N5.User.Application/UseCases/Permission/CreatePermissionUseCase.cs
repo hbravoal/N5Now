@@ -1,11 +1,11 @@
 ﻿using FluentValidation;
 using N5.User.Domain.Application;
 using N5.Event.User;
-using N5.User.Application.Exceptions.Comment;
 using N5.User.Application.Exceptions.ValidatableExtension;
 using N5.User.Domain.DTO;
 using Throw;
 using N5.User.Application.Exceptions;
+using N5.User.Application.Exceptions.Permission;
 
 namespace N5.User.Application.UseCases.Permission;
 

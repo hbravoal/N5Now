@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "5Tzvyzui8OC3FvMlGHX4DYMljhI9Po2wqoYwjPah4uZWaiJxrXR+EplDSy1vmZWGJ4XEpSScsgciCP1p/4AE5g==",
+  "dgSpecHash": "9yt6/2YW4tAlqmow1Zo6KrBX+dvmXcgHC74SXHCOjp90habkm69tpAKsHAlYo0qQmkjCPxGygaqW39azCZvvrg==",
   "success": true,
   "projectFilePath": "G:\\MillionAndUp\\N5Now\\Backend\\N5\\src\\User\\N5.User.Infrastructure.Persistence\\N5.User.Infrastructure.Persistence.csproj",
   "expectedPackageFiles": [
@@ -39,6 +39,7 @@
     "C:\\Users\\HBrav\\.nuget\\packages\\microsoft.extensions.fileproviders.abstractions\\7.0.0\\microsoft.extensions.fileproviders.abstractions.7.0.0.nupkg.sha512",
     "C:\\Users\\HBrav\\.nuget\\packages\\microsoft.extensions.fileproviders.physical\\7.0.0\\microsoft.extensions.fileproviders.physical.7.0.0.nupkg.sha512",
     "C:\\Users\\HBrav\\.nuget\\packages\\microsoft.extensions.filesystemglobbing\\7.0.0\\microsoft.extensions.filesystemglobbing.7.0.0.nupkg.sha512",
+    "C:\\Users\\HBrav\\.nuget\\packages\\microsoft.extensions.hosting.abstractions\\7.0.0\\microsoft.extensions.hosting.abstractions.7.0.0.nupkg.sha512",
     "C:\\Users\\HBrav\\.nuget\\packages\\microsoft.extensions.logging\\7.0.0\\microsoft.extensions.logging.7.0.0.nupkg.sha512",
     "C:\\Users\\HBrav\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\7.0.0\\microsoft.extensions.logging.abstractions.7.0.0.nupkg.sha512",
     "C:\\Users\\HBrav\\.nuget\\packages\\microsoft.extensions.options\\7.0.0\\microsoft.extensions.options.7.0.0.nupkg.sha512",

@@ -4,3 +4,9 @@ Backend/N5/src/.vs/
 Backend/N5/src/.idea/
 
 Backend/N5/src/User/N5.User.Services/bin/
+
+Backend/N5/src/Architecture/N5.Eda.RequestReply/bin/
+
+Backend/N5/src/Architecture/N5.Eda.RequestReply/obj/
+
+Backend/N5/src/Architecture/N5.Domain/bin/

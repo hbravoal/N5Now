@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 //using Microsoft.Extensions.Hosting;
 using N5.User.Infrastructure.Persistence.Context;
 using System.Diagnostics.CodeAnalysis;
@@ -19,16 +20,16 @@ public static class ExtendMigration
     /// <param name="host">host instance</param>
     /// <example>host.ExecuteMigration(args);</example>
     /// <remarks>remember use attribute --run-migration when execute your application</remarks>
-	//public static IHost ExecuteMigration(this IHost host, string[] args)
- //   {
- //       if (args.Contains("--run-migration"))
- //       {
- //           var context = host.Services.GetService<UserContext>();
- //           ArgumentNullException.ThrowIfNull(context);
- //           if (context.Database.GetPendingMigrations().Any())
- //               context.Database.Migrate();
- //       }
+    public static IHost ExecuteMigration(this IHost host, string[] args)
+    {
+        if (args.Contains("--run-migration"))
+        {
+            var context = host.Services.GetService<UserContext>();
+            ArgumentNullException.ThrowIfNull(context);
+            if (context.Database.GetPendingMigrations().Any())
+                context.Database.Migrate();
+        }
 
- //       return host;
- //   }
+        return host;
+    }
 }
