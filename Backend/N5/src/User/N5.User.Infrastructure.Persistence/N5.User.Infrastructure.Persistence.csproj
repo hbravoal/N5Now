@@ -27,6 +27,7 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\..\Architecture\N5.Domain\N5.Domain.csproj" />
 	  <ProjectReference Include="..\N5.Microservice.User\N5.User.Domain\N5.User.Domain.csproj" />
+	  <ProjectReference Include="..\N5.User.Application\N5.User.Application.csproj" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Migrations\" />

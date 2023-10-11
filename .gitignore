@@ -10,3 +10,5 @@ Backend/N5/src/Architecture/N5.Eda.RequestReply/bin/
 Backend/N5/src/Architecture/N5.Eda.RequestReply/obj/
 
 Backend/N5/src/Architecture/N5.Domain/bin/
+
+Backend/N5/FrontEnd/n5app/public/

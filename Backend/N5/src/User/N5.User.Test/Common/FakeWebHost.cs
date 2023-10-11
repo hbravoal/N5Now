@@ -6,7 +6,6 @@ using Moq;
 using N5.Eda.Interfaces;
 using System.Diagnostics.CodeAnalysis;
 
-using MillionAndUp.Realty.Test.Extend;
 using Moq;
 using System.Diagnostics.CodeAnalysis;
 using N5.User.Application;
