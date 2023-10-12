@@ -6,6 +6,9 @@
   height: 40vmin;
   pointer-events: none;
 }
+.checkbox:checked + .check-icon {
+  display: flex;
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
