@@ -6,6 +6,11 @@ using Serilog;
 using Serilog.Exceptions;
 using System.Globalization;
 using System.Reflection;
+using N5.User.Api.Middleware;
+using MongoDB.Driver;
+using System.Net.WebSockets;
+using System.Net;
+using System.Text;
 
 var AppName = "N5.User.Api";
 
@@ -40,6 +45,8 @@ try
     builder.Services.AddKafka(builder.Configuration, Assembly.GetEntryAssembly());
     builder.Services.AddRequestReply(builder.Configuration);
     builder.Services.AddHealthChecks();
+    builder.Services.AddSingleton<ChatWebSocketHandler>();
+    builder.Services.AddSingleton<WebSocketConnectionManager>();
 
     var app = builder.Build();
     app.MapHealthChecks("/healthz");
@@ -59,6 +66,8 @@ try
             //EventRealty.GetCommentsComplete,
         });
     });
+    app.Map("/ws", SocketHandler.Map);
+
     app.UseBrokerKafka();
     app.MapControllers();
 

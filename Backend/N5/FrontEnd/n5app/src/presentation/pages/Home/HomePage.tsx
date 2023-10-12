@@ -1,8 +1,8 @@
-import { useEffect } from "react";
+import React, { useState, useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { IState } from "../../../domain/interfaces/presentation/IState";
 import { homePageBegin } from "../../redux/home/reducers";
-
+import useWebSocket, { ReadyState } from 'react-use-websocket';
 const  HomePage = () =>{
   const dispatch = useDispatch();
   let [
@@ -14,7 +14,29 @@ const  HomePage = () =>{
     state.home.loading,
     
   ]);
-  
+
+
+const sessionId = '30a031bb-349c-4421-a387-ee50b1a3bf44';
+  //Public API that will echo messages sent to it back to the client
+  const [socketUrl, setSocketUrl] = useState('wss://localhost:7005/ws?id=30a031bb-349c-4421-a387-ee50b1a3bf44');
+  const [messageHistory, setMessageHistory] = useState([]);
+
+  const { sendMessage, lastMessage, readyState } = useWebSocket(socketUrl);
+  //@ts-ignore
+  const connectionStatus = {
+    [ReadyState.CONNECTING]: 'Connecting',
+    [ReadyState.OPEN]: 'Open',
+    [ReadyState.CLOSING]: 'Closing',
+    [ReadyState.CLOSED]: 'Closed',
+    [ReadyState.UNINSTANTIATED]: 'Uninstantiated',
+  //@ts-ignore
+  }[readyState];
+  useEffect(() => {
+    if (lastMessage !== null) {
+      console.log('lastMessage',lastMessage);
+ }
+  }, [lastMessage]);
+
 
 
   useEffect(() => {

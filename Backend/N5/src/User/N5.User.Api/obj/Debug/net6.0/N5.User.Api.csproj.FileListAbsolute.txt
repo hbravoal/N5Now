@@ -144,3 +144,4 @@ G:\MillionAndUp\N5Now\Backend\N5\src\User\N5.User.Api\obj\Debug\net6.0\refint\N5
 G:\MillionAndUp\N5Now\Backend\N5\src\User\N5.User.Api\obj\Debug\net6.0\N5.User.Api.pdb
 G:\MillionAndUp\N5Now\Backend\N5\src\User\N5.User.Api\obj\Debug\net6.0\N5.User.Api.genruntimeconfig.cache
 G:\MillionAndUp\N5Now\Backend\N5\src\User\N5.User.Api\obj\Debug\net6.0\ref\N5.User.Api.dll
+G:\MillionAndUp\N5Now\Backend\N5\src\User\N5.User.Api\bin\Debug\net6.0\System.Net.WebSockets.WebSocketProtocol.dll
