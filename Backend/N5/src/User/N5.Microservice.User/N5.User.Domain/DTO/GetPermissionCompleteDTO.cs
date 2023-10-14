@@ -18,6 +18,6 @@ public record GetPermissionCompleteDTO : IPayloadMessage, IErrorManageMessage
     public string IdSession { get; set; }
 
     #region Properties 
-   //public List<PermissionDto> Permissions { get; set; }
+   public List<PermissionDto> Permissions { get; set; }
     #endregion
 }

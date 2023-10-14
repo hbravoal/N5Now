@@ -30,3 +30,7 @@ Backend/N5/src/User/N5.User.Application/obj/
 Backend/N5/src/User/N5.User.Infrastructure.Persistence/obj/
 
 Backend/N5/src/User/N5.User.Services/obj/
+
+Backend/N5/src/User/N5.Microservice.User/N5.User.Domain/bin/
+
+Backend/N5/src/User/N5.User.Infrastructure.Persistence/bin/Debug/

@@ -21,17 +21,14 @@ public class GetUserPermissionHandler : IRequestHandler<GetPermissionUseCase, Ge
         if (request.Request is null)
             throw new ArgumentNullException(nameof(request.Request));
 
-        var commentEntity = _mapper.Map<Domain.Entities.UserPermission>(request.Request);
-        commentEntity.Enabled = true;
         var results = await _unitOfWork.UserPermissionRepository.GetPaginingAsync(null,request.Request.Page, request.Request.PageSize,null, cancellationToken);
-        
-
+        //"error": "Missing type map configuration or unsupported mapping.\r\n\r\nMapping types:\r\nGetPermissionDto -> UserPermission\r\nN5.User.Domain.DTO.GetPermissionDto -> N5.User.Domain.Entities.UserPermission",
+        //"error": "Missing type map configuration or unsupported mapping.\r\n\r\nMapping types:\r\nGetPermissionDto -> UserPermission\r\nN5.User.Domain.DTO.GetPermissionDto -> N5.User.Domain.Entities.UserPermission",
         var result = new GetPermissionCompleteDTO()
         {
             IdSession = request.Request.IdSession,
-            //Id = commentEntity.Id,
-            //GetdDate = commentEntity.GetdDate
-        };
+           Permissions = _mapper.Map<List<PermissionDto>>(results)
+    };
 
         await _broker.Publish(
            EventUser.GetPermissionComplete,
