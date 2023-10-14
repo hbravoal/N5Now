@@ -140,10 +140,10 @@ public abstract class GenericRepository<TEntity, TId> : IGenericRepository<TEnti
     /// <inheritdoc/>
     public virtual Task<List<TEntity>> GetPaginingAsync(
         Expression<Func<TEntity, bool>>? filter = null,
-        Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null,
-        CancellationToken cancellationToken = default,
-        int page = 1,
+         int page = 1,
         int size = 100,
+        Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null,
+       CancellationToken cancellationToken = default,
         bool withDisabled = false,
         params Expression<Func<TEntity, dynamic>>[] navigationPropertyPaths
     )

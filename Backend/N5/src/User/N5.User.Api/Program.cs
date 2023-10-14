@@ -45,8 +45,9 @@ try
     builder.Services.AddKafka(builder.Configuration, Assembly.GetEntryAssembly());
     builder.Services.AddRequestReply(builder.Configuration);
     builder.Services.AddHealthChecks();
-    builder.Services.AddSingleton<ChatWebSocketHandler>();
+    //builder.Services.AddSingleton<ChatWebSocketHandler>();
     builder.Services.AddSingleton<WebSocketConnectionManager>();
+    builder.Services.AddSingleton<SocketHandler>();
 
     var app = builder.Build();
     app.MapHealthChecks("/healthz");
@@ -56,14 +57,19 @@ try
         app.UseSwagger();
         app.UseSwaggerUI();
     }
-
+    //TODO: Change when it'll be neccesary.
+    app.UseCors(builder => builder
+    .AllowAnyOrigin()
+    .AllowAnyMethod()
+    .AllowAnyHeader());
     //Add Kafka Conenction
     app.UseRequestReply(options =>
     {
         options.RegisterTopics(new string[] {
             EventUser.CreatePermissionComplete,
             EventUser.CreatePermission,
-            //EventRealty.GetCommentsComplete,
+            EventUser.GetPermission,
+            EventUser.GetPermissionComplete,
         });
     });
     app.Map("/ws", SocketHandler.Map);

@@ -3,8 +3,11 @@ using N5.Eda.Interfaces;
 using N5.Eda.RequestReply.Interface;
 using N5.Event.User;
 using N5.TryCatch.Extend;
+using N5.User.Api.Middleware;
 using N5.User.Domain.DTO;
 using System.Net;
+using System.Net.WebSockets;
+using System.Text;
 
 namespace N5.User.Api.Controllers;
 
@@ -14,7 +17,8 @@ public class PermissionController : Controller
 {
     private readonly IRequestReplyExecute _requestReply;
     private readonly IBroker _broker;
-    public PermissionController(IRequestReplyExecute requestReply, IBroker broker) => (_requestReply,_broker)= (requestReply,broker);
+    private readonly SocketHandler _SocketHandler;
+    public PermissionController(IRequestReplyExecute requestReply, IBroker broker, SocketHandler osck) => (_requestReply,_broker, _SocketHandler) = (requestReply,broker, osck);
 
    
 
@@ -25,27 +29,57 @@ public class PermissionController : Controller
     [ProducesResponseType(typeof(CreatePermissionCompleteDTO), (int)HttpStatusCode.OK)]
     public async Task<IActionResult> JustCreate([FromBody] CreatePermissionDto request)
     {
-        await _broker.Publish(EventUser.CreatePermission, request);
+
+        var h = SocketHandler.GetInstance();
+        var newSocket = h.GetSocketId(Guid.Parse("30a031bb-349c-4421-a387-ee50b1a3bf44"));
+        if (newSocket is not null)
+        {
+            if(newSocket.State == WebSocketState.Open)
+            {
+                var encoded = Encoding.UTF8.GetBytes("x22d");
+                await newSocket.SendAsync(encoded, WebSocketMessageType.Text, true, CancellationToken.None);
+            }
+          
+        }
+
+        //await _broker.Publish(EventUser.CreatePermission, request);
         return Ok();
     }
 
     [HttpPost]
-    [Route("Create")]
+    [Route("Get")]
     [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-    [ProducesResponseType(typeof(CreatePermissionCompleteDTO), (int)HttpStatusCode.OK)]
-    public async Task<IActionResult> Create([FromBody] CreatePermissionDto request)
+    [ProducesResponseType(typeof(GetPermissionCompleteDTO), (int)HttpStatusCode.OK)]
+    public async Task<IActionResult> Get([FromBody] GetPermissionDto request)
          => await this.Try<IActionResult>(
              () => ModelState.IsValid ?
-                 Ok(_requestReply.Wait<CreatePermissionCompleteDTO>(
+                 Ok(_requestReply.Wait<GetPermissionCompleteDTO>(
                      request,
-                     EventUser.CreatePermission,
-                     EventUser.CreatePermissionComplete,
+                     EventUser.GetPermission,
+                     EventUser.GetPermissionComplete,
                      new TimeSpan(0, 0, 70)
                  ).Result) :
                  BadRequest())
              .Catch(HttpErrorHandler)
              .Apply();
 
+
+    [HttpPost]
+    [Route("Create")]
+    [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+    [ProducesResponseType(typeof(CreatePermissionCompleteDTO), (int)HttpStatusCode.OK)]
+    public async Task<IActionResult> Create([FromBody] CreatePermissionDto request)
+     => await this.Try<IActionResult>(
+         () => ModelState.IsValid ?
+             Ok(_requestReply.Wait<CreatePermissionCompleteDTO>(
+                 request,
+                 EventUser.CreatePermission,
+                 EventUser.CreatePermissionComplete,
+                 new TimeSpan(0, 0, 70)
+             ).Result) :
+             BadRequest())
+         .Catch(HttpErrorHandler)
+         .Apply();
 
     #region Helpers
 

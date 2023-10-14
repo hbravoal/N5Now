@@ -8,9 +8,8 @@ namespace N5.User.Api.Middleware
     {
         private readonly ConcurrentDictionary<Guid, WebSocket> _sockets = new ConcurrentDictionary<Guid, WebSocket>();
 
-        public WebSocket AddSocket(WebSocket socket)
+        public WebSocket AddSocket(WebSocket socket,Guid socketId)
         {
-            var socketId = Guid.NewGuid();
             _sockets.TryAdd(socketId, socket);
             return socket;
         }
@@ -22,13 +21,13 @@ namespace N5.User.Api.Middleware
         }
 
 
-        public Guid? GetSocketId(WebSocket socket)
+        public WebSocket? GetSocketId(Guid socket)
         {
             foreach (var (key, value) in _sockets)
             {
-                if (value == socket)
+                if (key== socket)
                 {
-                    return key;
+                    return value;
                 }
             }
             return null;

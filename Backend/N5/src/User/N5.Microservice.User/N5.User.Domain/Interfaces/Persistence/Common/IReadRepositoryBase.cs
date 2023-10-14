@@ -51,10 +51,10 @@ public interface IReadRepositoryBase<TEntity, TId>
     /// <returns></returns>
     Task<List<TEntity>> GetPaginingAsync(
         Expression<Func<TEntity, bool>>? filter = null,
+        int page=1,
+        int size = 100,
         Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null,
         CancellationToken cancellationToken = default,
-        int page = 1,
-        int size = 100,
         bool withDisabled = false,
         params Expression<Func<TEntity, dynamic>>[] navigationPropertyPaths);
 

@@ -17,3 +17,13 @@ G:\MillionAndUp\N5Now\Backend\N5\src\User\N5.User.Infrastructure.Persistence\obj
 G:\MillionAndUp\N5Now\Backend\N5\src\User\N5.User.Infrastructure.Persistence\obj\Debug\net6.0\N5.User.Infrastructure.Persistence.pdb
 G:\MillionAndUp\N5Now\Backend\N5\src\User\N5.User.Infrastructure.Persistence\obj\Debug\net6.0\N5.User.Infrastructure.Persistence.genruntimeconfig.cache
 G:\MillionAndUp\N5Now\Backend\N5\src\User\N5.User.Infrastructure.Persistence\obj\Debug\net6.0\ref\N5.User.Infrastructure.Persistence.dll
+G:\MillionAndUp\N5Now\Backend\N5\src\User\N5.User.Infrastructure.Persistence\bin\Debug\net6.0\N5.Eda.dll
+G:\MillionAndUp\N5Now\Backend\N5\src\User\N5.User.Infrastructure.Persistence\bin\Debug\net6.0\N5.Event.dll
+G:\MillionAndUp\N5Now\Backend\N5\src\User\N5.User.Infrastructure.Persistence\bin\Debug\net6.0\N5.TryCatch.dll
+G:\MillionAndUp\N5Now\Backend\N5\src\User\N5.User.Infrastructure.Persistence\bin\Debug\net6.0\N5.User.Application.dll
+G:\MillionAndUp\N5Now\Backend\N5\src\User\N5.User.Infrastructure.Persistence\bin\Debug\net6.0\N5.Utilities.dll
+G:\MillionAndUp\N5Now\Backend\N5\src\User\N5.User.Infrastructure.Persistence\bin\Debug\net6.0\N5.User.Application.pdb
+G:\MillionAndUp\N5Now\Backend\N5\src\User\N5.User.Infrastructure.Persistence\bin\Debug\net6.0\N5.Eda.pdb
+G:\MillionAndUp\N5Now\Backend\N5\src\User\N5.User.Infrastructure.Persistence\bin\Debug\net6.0\N5.Event.pdb
+G:\MillionAndUp\N5Now\Backend\N5\src\User\N5.User.Infrastructure.Persistence\bin\Debug\net6.0\N5.TryCatch.pdb
+G:\MillionAndUp\N5Now\Backend\N5\src\User\N5.User.Infrastructure.Persistence\bin\Debug\net6.0\N5.Utilities.pdb

@@ -7,9 +7,6 @@ import { ICreateUserPermissionInfrastructure } from '../../domain/interfaces/inf
 import { ICreateUserPermissionInfrastructureType } from '../../domain/types/IHomeType';
 
 
-/**
- * [Application] Generate code
- */
 export class CreateUserPermissionApplication implements ICreateUserPermissionApplication {
   private readonly _infrastructure: ICreateUserPermissionInfrastructure;
 

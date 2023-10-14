@@ -11,5 +11,12 @@ public class UserPermissionMapper : Profile
         CreateMap<CreatePermissionDto, UserPermission>();
 
         CreateMap<UserPermission, CreatePermissionDto>();
+
+        CreateMap<PermissionDto, UserPermission>();
+        CreateMap< UserPermission, PermissionDto>();
+
+        CreateMap<List<PermissionDto>, List<UserPermission>>();
+        CreateMap<List<UserPermission>, List<PermissionDto>>();
+
     }
 }

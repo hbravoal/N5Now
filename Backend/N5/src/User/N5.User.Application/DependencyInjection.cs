@@ -24,7 +24,6 @@ public static class DependencyInjection
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CustomManageBehaviour<,>));
         services.AddAutoMapper(Assembly.GetExecutingAssembly()); //Automapper
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly()); //Validations.
-
         return services;
     }
 }

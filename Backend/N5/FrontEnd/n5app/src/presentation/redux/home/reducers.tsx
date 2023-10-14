@@ -9,6 +9,9 @@ export const homeSlice = createSlice({
     homePageBegin: state => {
       state.loading = true;
     },
+    homePageEnd: state => {
+      state.loading = false;
+    },
     homePageSuccess: (state, response: PayloadAction<ResponseHome>) => {
       state.data = response.payload;
       state.loading = false;
@@ -16,5 +19,5 @@ export const homeSlice = createSlice({
   },
 });
 
-export const {homePageBegin, homePageSuccess} = homeSlice.actions;
+export const {homePageBegin,homePageEnd, homePageSuccess} = homeSlice.actions;
 export default homeSlice.reducer;
