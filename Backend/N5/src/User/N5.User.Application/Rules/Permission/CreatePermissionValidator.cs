@@ -9,7 +9,8 @@ public class CreatePermissionValidator : AbstractValidator<CreatePermissionDto>
 {
     public CreatePermissionValidator()
     {
-        RuleFor(x => x.IdSession).NotNull().Must(x => SpecialValidation.BeValidGuid(x)).WithMessage(x => "IdSession is required");
+        RuleFor(x => x.IdSession).NotNull().WithMessage(x => "IdSession is required");
+//        RuleFor(x => x.IdSession).NotNull().Must(x => SpecialValidation.BeValidGuid(x)).WithMessage(x => "IdSession is required");
         /* RuleFor(x => x.EmployeeForename).NotNull().WithMessage(x => "Employee forename is required");
          RuleFor(x => x.EmployeeSurname).NotNull().WithMessage(x => "Employee Surname is required");
          RuleFor(x => x.PermissionTypeId).NotNull().Must(x => x>0).WithMessage(x => "Permission is required");

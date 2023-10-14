@@ -20,8 +20,6 @@ public class PermissionController : Controller
     private readonly SocketHandler _SocketHandler;
     public PermissionController(IRequestReplyExecute requestReply, IBroker broker, SocketHandler osck) => (_requestReply,_broker, _SocketHandler) = (requestReply,broker, osck);
 
-   
-
 
     [HttpPost]
     [Route("JustCreate")]
