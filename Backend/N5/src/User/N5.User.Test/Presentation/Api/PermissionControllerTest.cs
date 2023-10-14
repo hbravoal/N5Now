@@ -12,11 +12,7 @@ namespace N5.User.Test.Presentation.Api;
 [TestFixture]
 public class PermissionControllerTest
 {
-    /// <summary>
-    /// G: El usuario escribe un comentario
-    /// W: El usuario hace clic en el botón save comment
-    /// T: El usuario recibirá el comment item Id del comentario creado
-    /// </summary>
+  
     [Test]
     public void CreateDocumentControllerTest()
     {
@@ -37,11 +33,7 @@ public class PermissionControllerTest
         Assert.That(responseController.Id, Is.Positive);
     }
 
-    /// <summary>
-    /// G: El usuario escribe un comentario
-    /// W: El usuario hace clic en el botón save comment y se produce un error general al crearlo
-    /// T: El usuario recibirá un error
-    /// </summary>
+  
     [Test]
     public void CallFailedControllerTest()
     {
@@ -62,11 +54,7 @@ public class PermissionControllerTest
         Assert.That(responseController.StatusCode, Is.EqualTo((int)HttpStatusCode.InternalServerError));
     }
 
-    /// <summary>
-    /// G: El usuario escribe un comentario
-    /// W: El usuario hace clic en el botón save comment y se carga de forma incorrecta el request
-    /// T: El usuario recibirá un error indicando un BadRequest
-    /// </summary>
+   
     [Test]
     public void CreateCommentFailedModelStateControllerTest()
     {
@@ -88,11 +76,7 @@ public class PermissionControllerTest
         Assert.That(responseController.StatusCode, Is.EqualTo((int)HttpStatusCode.BadRequest));
     }
 
-    /// <summary>
-    /// G: El usuario actualiza un comentario
-    /// W: El usuario hace clic en el botón save comment
-    /// T: El usuario recibirá el comment item Id del comentario actualizado
-    /// </summary>
+
     [Test]
     public void UpdateCommentControllerTest()
     {
@@ -113,11 +97,7 @@ public class PermissionControllerTest
         Assert.That(responseController.EmployeeForename, Is.Not.Null);
     }
 
-    /// <summary>
-    /// G: El usuario actualiza un comentario
-    /// W: El usuario hace clic en el botón save comment y se carga de forma incorrecta el request
-    /// T: El usuario recibirá un error indicando un BadRequest
-    /// </summary>
+
     [Test]
     public void UpdateCommentFailedModelStateControllerTest()
     {
@@ -139,11 +119,6 @@ public class PermissionControllerTest
         Assert.That(responseController.StatusCode, Is.EqualTo((int)HttpStatusCode.BadRequest));
     }
 
-    /// <summary>
-    /// G: El usuario ingresa en una trasaccion
-    /// W: El usuario solicita la lista de comentarios de la transaccion
-    /// T: El usuario recibe la lista de comentarios relacionados a la transaccion
-    /// </summary>
     [Test]
     public void GetCommentsControllerTest()
     {
@@ -167,11 +142,7 @@ public class PermissionControllerTest
         });
     }
 
-    /// <summary>
-    /// G: El usuario ingresa en una trasaccion
-    /// W: El usuario solicita la lista de comentarios de la transaccion y se carga de forma incorrecta el request
-    /// T: El usuario recibirá un error indicando un BadRequest
-    /// </summary>
+
     [Test]
     public void GetCommentsFailedModelStateControllerTest()
     {

@@ -38,6 +38,7 @@
 	  <ProjectReference Include="..\N5.User.Api\N5.User.Api.csproj" />
 	  <ProjectReference Include="..\N5.User.Application\N5.User.Application.csproj" />
 	  <ProjectReference Include="..\N5.User.Infrastructure.Persistence\N5.User.Infrastructure.Persistence.csproj" />
+	  <ProjectReference Include="..\N5.User.Services\N5.User.Services.csproj" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Application\UseCases\Permission\" />
