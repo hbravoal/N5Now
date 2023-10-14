@@ -16,10 +16,11 @@ namespace N5.User.Api.Controllers;
 public class PermissionController : Controller
 {
     private readonly IRequestReplyExecute _requestReply;
-    private readonly IBroker _broker;
-    private readonly SocketHandler _SocketHandler;
-    public PermissionController(IRequestReplyExecute requestReply, IBroker broker, SocketHandler osck) => (_requestReply,_broker, _SocketHandler) = (requestReply,broker, osck);
+    //private readonly IBroker _broker;
+    //private readonly SocketHandler _SocketHandler;
+    //public PermissionController(IRequestReplyExecute requestReply, IBroker broker, SocketHandler osck) => (_requestReply,_broker, _SocketHandler) = (requestReply,broker, osck);
 
+    public PermissionController(IRequestReplyExecute requestReply) => (_requestReply) = (requestReply);
 
     [HttpPost]
     [Route("JustCreate")]

@@ -22,6 +22,12 @@ public static class UserPermissionExtend
         faker.RuleFor(a => a.PageSize, z => z.Random.Int(1, 2000));
         return faker.Generate();
     }
+    public static GetPermissionCompleteDTO GenerateObject(this Faker<GetPermissionCompleteDTO> faker)
+    {
+        faker.RuleFor(a => a.IdSession, z => Guid.NewGuid().ToString());
+        faker.RuleFor(a => a.Permissions, z => new List<PermissionDto>());
+        return faker.Generate();
+    }
     public static CreatePermissionDto GenerateObject(this Faker<CreatePermissionDto> faker)
     {
         faker.RuleFor(a => a.IdSession, z => Guid.NewGuid().ToString());
@@ -38,12 +44,13 @@ public static class UserPermissionExtend
         faker.RuleFor(a => a.Id, z => z.Random.Int(1, 99999));
         return faker.Generate();
     }
-    public static ModifyPermissionCompleteDTO GenerateObject(this Faker<ModifyPermissionCompleteDTO> faker)
+    public static ModifyPermissionCompleteDTO GenerateObject(this Faker<ModifyPermissionCompleteDTO> faker, string? EmployeeForename = null)
     {
         faker.RuleFor(a => a.IdSession, z => Guid.NewGuid().ToString());
-        faker.RuleFor(a => a.Id, z => z.Random.Int(1, 99999));
+        faker.RuleFor(a => a.EmployeeForename, z => EmployeeForename ?? z.Name.FirstName());
         return faker.Generate();
     }
+
     public static UserPermission GenerateObject(this Faker<UserPermission> faker)
     {
         faker.RuleFor(a => a.PermissionDate, z => DateTime.UtcNow);

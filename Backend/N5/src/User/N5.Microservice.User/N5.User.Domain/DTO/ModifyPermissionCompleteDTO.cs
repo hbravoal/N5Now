@@ -18,6 +18,26 @@ public record ModifyPermissionCompleteDTO : IPayloadMessage, IErrorManageMessage
     public int Id { get; set; }
 
     /// <summary>
+    /// Employee name
+    /// </summary>
+    public string EmployeeForename { get; set; }
+
+    /// <summary>
+    /// Employee name
+    /// </summary>
+    public string EmployeeSurname { get; set; }
+
+    /// <summary>
+    /// Permission type Id Id
+    /// </summary>
+    public int PermissionTypeId { get; set; }
+
+    /// <summary>
+    /// Permission Date
+    /// </summary>
+    public DateTime PermissionDate { get; set; }
+
+    /// <summary>
     /// Created Date
     /// </summary>
     public DateTime CreatedDate { get; set; }
