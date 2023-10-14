@@ -4,6 +4,7 @@ import { IState } from "../../../domain/interfaces/presentation/IState";
 import { homePageBegin, homePageEnd } from "../../redux/home/reducers";
 import useWebSocket, { ReadyState } from 'react-use-websocket';
 import { UserPermissionResponseModel } from '../../../domain/home/model/GetUserPermissionResponseModel';
+import CreateUserPermissionModal from '../../components/modals/CreateUserPermissionModal';
 const  HomePage = () =>{
   const dispatch = useDispatch();
   let [
@@ -55,6 +56,7 @@ const sessionId = '75696835-8527-4eda-8bea-607ef19affb9';
   
   return (
     <>
+    <CreateUserPermissionModal/>
         <div className="sm:px-6 w-full">
                     <div className="px-4 md:px-10 py-4 md:py-7">
                         <div className="flex items-center justify-between">

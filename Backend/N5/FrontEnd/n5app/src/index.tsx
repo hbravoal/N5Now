@@ -7,6 +7,7 @@ import { store } from './presentation/redux/store';
 import DependencyInjectionApplication from './application/dependencyInjectionApplication';
 import DependencyInjectionInfrastructure from './infrastructure/dependencyInfrastructure';
 import HomePage from './presentation/pages/Home/HomePage';
+import { ThemeProvider } from '@material-tailwind/react';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -16,7 +17,10 @@ DependencyInjectionInfrastructure();
 root.render(
   <React.StrictMode>
     <Provider store={store}>
+    <ThemeProvider>
       <HomePage />
+    </ThemeProvider>
+
     </Provider>
   </React.StrictMode>
 );
