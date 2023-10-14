@@ -23,8 +23,8 @@ public class GetUserPermissionHandler : IRequestHandler<GetPermissionUseCase, Ge
 
         var commentEntity = _mapper.Map<Domain.Entities.UserPermission>(request.Request);
         commentEntity.Enabled = true;
-        await _unitOfWork.UserPermissionRepository.AddAsync(commentEntity, cancellationToken);
-        await _unitOfWork.SaveAsync(cancellationToken);
+        var results = await _unitOfWork.UserPermissionRepository.GetPaginingAsync(null,request.Request.Page, request.Request.PageSize,null, cancellationToken);
+        
 
         var result = new GetPermissionCompleteDTO()
         {
