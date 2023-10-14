@@ -21,13 +21,16 @@ public class GetUserPermissionHandler : IRequestHandler<GetPermissionUseCase, Ge
         if (request.Request is null)
             throw new ArgumentNullException(nameof(request.Request));
 
-        var response = await _unitOfWork.UserPermissionRepository.GetPaginingAsync(d => d.Enabled == true, request.Request.Page, request.Request.PageSize);
-        //TODO Mapper:
-        var responseCastedf = _mapper.Map<List<PermissionDto>>(response);
+        var commentEntity = _mapper.Map<Domain.Entities.UserPermission>(request.Request);
+        commentEntity.Enabled = true;
+        await _unitOfWork.UserPermissionRepository.AddAsync(commentEntity, cancellationToken);
+        await _unitOfWork.SaveAsync(cancellationToken);
+
         var result = new GetPermissionCompleteDTO()
         {
             IdSession = request.Request.IdSession,
-            Permissions = responseCastedf,
+            //Id = commentEntity.Id,
+            //GetdDate = commentEntity.GetdDate
         };
 
         await _broker.Publish(
