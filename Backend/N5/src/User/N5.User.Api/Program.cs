@@ -70,6 +70,8 @@ try
             EventUser.CreatePermission,
             EventUser.GetPermission,
             EventUser.GetPermissionComplete,
+            EventUser.ModifyPermission,
+            EventUser.ModifyPermissionComplete,
         });
     });
     app.Map("/ws", SocketHandler.Map);

@@ -79,6 +79,24 @@ public class PermissionController : Controller
          .Catch(HttpErrorHandler)
          .Apply();
 
+
+    [HttpPost]
+    [Route("Modify")]
+    [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+    [ProducesResponseType(typeof(ModifyPermissionCompleteDTO), (int)HttpStatusCode.OK)]
+    public async Task<IActionResult> Modify([FromBody] ModifyPermissionDto request)
+     => await this.Try<IActionResult>(
+         () => ModelState.IsValid ?
+             Ok(_requestReply.Wait<ModifyPermissionCompleteDTO>(
+                 request,
+                 EventUser.ModifyPermission,
+                 EventUser.ModifyPermissionComplete,
+                 new TimeSpan(0, 0, 70)
+             ).Result) :
+             BadRequest())
+         .Catch(HttpErrorHandler)
+         .Apply();
+
     #region Helpers
 
     private IActionResult HttpErrorHandler(Exception error)

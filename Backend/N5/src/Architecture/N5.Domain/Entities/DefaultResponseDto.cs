@@ -9,6 +9,8 @@ public record DefaultResponseDto : IPayloadMessage, IErrorManageMessage
     public string IdSession { get; set; }
     public string Error { get; set; } = string.Empty;
     public int ErrorCode { get; set; }
+
+    public string NameOperation { get; }
 }
 
 public static class DefaultResponseDtoExtend

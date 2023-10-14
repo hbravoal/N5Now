@@ -16,6 +16,15 @@ public static class EventUser
     public const string CreatePermissionComplete = "public.n5.user.permission.create.createpermissioncomplete";
 
     /// <summary>
+    /// Modify permission.
+    /// </summary>
+    public const string ModifyPermission = "public.n5.user.permission.modify";
+    /// <summary>
+    /// End process Modify permission.
+    /// </summary>
+    public const string ModifyPermissionComplete = "public.n5.user.permission.modify.modifypermissioncomplete";
+
+    /// <summary>
     /// Get permissions.
     /// </summary>
     public const string GetPermission = "public.n5.user.permission.get";

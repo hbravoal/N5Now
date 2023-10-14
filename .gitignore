@@ -34,3 +34,9 @@ Backend/N5/src/User/N5.User.Services/obj/
 Backend/N5/src/User/N5.Microservice.User/N5.User.Domain/bin/
 
 Backend/N5/src/User/N5.User.Infrastructure.Persistence/bin/Debug/
+
+Backend/N5/src/Architecture/N5.Domain/obj/
+
+Backend/N5/src/Architecture/N5.Event/bin/
+
+Backend/N5/src/Architecture/N5.Event/obj/

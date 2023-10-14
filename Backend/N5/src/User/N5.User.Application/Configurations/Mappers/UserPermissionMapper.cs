@@ -8,16 +8,25 @@ public class UserPermissionMapper : Profile
 {
     public UserPermissionMapper()
     {
+        #region Create
         CreateMap<CreatePermissionDto, UserPermission>();
 
         CreateMap<UserPermission, CreatePermissionDto>();
+        #endregion
 
+        #region Modify
+         CreateMap<ModifyPermissionDto, UserPermission>();
 
+        CreateMap<UserPermission, ModifyPermissionDto>();
+        #endregion
+
+        #region Get
         CreateMap<PermissionDto, UserPermission>();
 
-        CreateMap<UserPermission, PermissionDto>();
+        CreateMap<UserPermission, PermissionDto>(); 
+        #endregion
 
-   
+
 
 
         //    CreateMap<PermissionDto, UserPermission>();

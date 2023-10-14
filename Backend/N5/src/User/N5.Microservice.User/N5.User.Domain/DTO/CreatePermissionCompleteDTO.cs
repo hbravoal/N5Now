@@ -3,6 +3,16 @@
 namespace N5.User.Domain.DTO;
 public record CreatePermissionCompleteDTO : IPayloadMessage, IErrorManageMessage
 {
+
+    /// <summary>
+    /// User's Session
+    /// </summary>
+    public string IdSession { get; set; }
+    /// <summary>
+    /// Determine what is the current operation
+    /// </summary>
+    public string NameOperation { get => "request"; }
+
     /// <summary>
     /// Permission id Created
     /// </summary>
@@ -21,8 +31,5 @@ public record CreatePermissionCompleteDTO : IPayloadMessage, IErrorManageMessage
     /// Error Code
     /// </summary>
     public int ErrorCode { get; set; }
-    /// <summary>
-    /// Session Id
-    /// </summary>
-    public string IdSession { get; set; }
+   
 }

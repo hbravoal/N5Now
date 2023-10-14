@@ -13,5 +13,5 @@ public interface IPayloadMessage
     /// <summary>
     /// Determine what operation will be handler
     /// </summary>
-    public string NameOperation { get; set; }
+    public string NameOperation { get;}
 }
