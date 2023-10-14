@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import ResponseHome from '../../../domain/home/model/responseHome';
+import ResponseHome, { UserPermissionResponseModel } from '../../../domain/home/model/GetUserPermissionResponseModel';
 import HomeState from '../../../domain/home/state/HomeState';
 
 export const homeSlice = createSlice({
@@ -12,9 +12,8 @@ export const homeSlice = createSlice({
     homePageEnd: state => {
       state.loading = false;
     },
-    homePageSuccess: (state, response: PayloadAction<ResponseHome>) => {
+    homePageSuccess: (state, response: PayloadAction<UserPermissionResponseModel[]>) => {
       state.data = response.payload;
-      state.loading = false;
     },
   },
 });

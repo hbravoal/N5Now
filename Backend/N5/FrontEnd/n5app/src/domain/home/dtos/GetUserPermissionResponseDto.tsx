@@ -1,15 +1,14 @@
 export interface GetUserPermissionResponseDto {
-    Error:string
-    ErrorCode:number
-    IdSession:string
-    Permissions: UserPermissionResponseDto[]
+    error:string
+    errorCode:number
+    idSession:string
+    permissions: UserPermissionResponseDto[]
 }
 
 export interface UserPermissionResponseDto{
-    Id:number
-
-    EmployeeForename:string
-    EmployeeSurname:string
-    PermissionTypeId:number
-    PermissionDate:string
+    id:number
+    employeeForename:string
+    employeeSurname:string
+    permissionTypeId:number
+    permissionDate:string
 }

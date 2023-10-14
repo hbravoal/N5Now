@@ -10,7 +10,7 @@ export default class GetUserPermissionInfrastructure
 {
   public async Execute(_request: GetUserPermissionDto): Promise<GetUserPermissionResponseDto> {
 
-    return await this.post<any>(
+    return await this.post<GetUserPermissionDto>(
       `${USER_CONFIGURATION_PROXY_GET_PERMISSIONS}`,
       _request,
     );

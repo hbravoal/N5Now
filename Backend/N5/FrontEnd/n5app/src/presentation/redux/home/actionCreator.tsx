@@ -5,17 +5,19 @@ import { homePageSuccess } from './reducers';
 import ICreateUserPermissionApplication from '../../../domain/interfaces/application/ICreateUserPermissionApplication';
 import { ICreateUserPermissionInfrastructureType, IGetUserPermissionApplicationType, IGetUserPermissionInfrastructureType } from '../../../domain/types/IHomeType';
 import IGetUserPermissionApplication from '../../../domain/interfaces/application/IGetUserPermissionApplication';
+import GetUserPermissionResponseModel from '../../../domain/home/model/GetUserPermissionResponseModel';
 
 function* homePage(request:any): any {
   try {
     console.log('trying...')
     const homeApplication =
       container.resolve<IGetUserPermissionApplication>(IGetUserPermissionApplicationType);
-    const response = yield call(
+    const response :GetUserPermissionResponseModel = yield call(
       async () => await homeApplication.handler(request?.Page ??1 ,request.PageSize ?? 100),
     );
     console.log('resposne from pageget')
-    // yield put(homePageSuccess(response));
+    if(response && !response.error)
+     yield put(homePageSuccess(response.permissions));
   } catch (ex) {
     console.log('ex')
     console.error(ex);

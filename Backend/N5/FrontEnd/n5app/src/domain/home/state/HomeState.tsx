@@ -1,7 +1,7 @@
-import ResponseHome from "../model/responseHome";
+import { UserPermissionResponseModel } from "../model/GetUserPermissionResponseModel";
 
 export const HomeState = {
-  data: new ResponseHome(),
+  data: undefined as UserPermissionResponseModel[] | undefined,
   loading: false,
 };
 

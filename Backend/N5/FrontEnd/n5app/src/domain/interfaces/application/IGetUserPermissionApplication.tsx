@@ -1,5 +1,4 @@
-import RequestHome from "../../home/model/requestHome";
-
+import GetUserPermissionResponseModel from "../../home/model/GetUserPermissionResponseModel";
 export default interface IGetUserPermissionApplication {
-  handler: (page:number,pageSize:number) => Promise<any>;
+  handler: (page:number,pageSize:number) => Promise<GetUserPermissionResponseModel>;
 }

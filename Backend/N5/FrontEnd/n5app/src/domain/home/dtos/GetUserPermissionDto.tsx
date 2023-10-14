@@ -1,5 +1,5 @@
 export interface GetUserPermissionDto {
-    idSession: string
+    IdSession: string
     Page:number
     PageSize:number
   }
