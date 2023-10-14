@@ -19,6 +19,6 @@ public class GetCommentValidatorTest
     {
         var model = new Faker<GetPermissionDto>().GenerateObject();
         var result = validator.TestValidate(model);
-        result.ShouldNotHaveValidationErrorFor(x => x.);
+        result.ShouldNotHaveValidationErrorFor(x => x.Page);
     }
 }
