@@ -75,9 +75,8 @@ export default abstract class BaseAPI {
       });
       return data;
     } catch (error: any) {
-      console.error(error)
-      let errorMessage = error.response?.data;
-
+      console.error('sss',error)
+      let errorMessage = error.response?.data?.errors?.title;      
       throw new NetworkError(errorMessage, error.response?.status);
     }
   }

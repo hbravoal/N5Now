@@ -5,7 +5,9 @@ import { homePageBegin, homePageEnd } from "../../redux/home/reducers";
 import useWebSocket, { ReadyState } from 'react-use-websocket';
 import { UserPermissionResponseModel } from '../../../domain/home/model/GetUserPermissionResponseModel';
 import CreateUserPermissionModal from '../../components/modals/CreateUserPermissionModal';
+import { CreateUserPermissionModel } from '../../../domain/home/model/CreateUserPermissionModel';
 const  HomePage = () =>{
+    const[openModal,setOpenModal] = React.useState(false);
   const dispatch = useDispatch();
   let [
     loading,
@@ -23,7 +25,7 @@ const  HomePage = () =>{
 const sessionId = '75696835-8527-4eda-8bea-607ef19affb9';
   //Public API that will echo messages sent to it back to the client
   const [socketUrl, setSocketUrl] = useState('wss://localhost:7005/ws?id=30a031bb-349c-4421-a387-ee50b1a3bf44');
-  const [messageHistory, setMessageHistory] = useState([]);
+
 
   const { sendMessage, lastMessage, readyState }= useWebSocket(socketUrl, {
     onOpen: () => console.log('opened'),
@@ -47,7 +49,14 @@ const sessionId = '75696835-8527-4eda-8bea-607ef19affb9';
   }, [lastMessage]);
 
 //
-
+const handleSave = (_request: CreateUserPermissionModel) => {
+    console.log('enters')
+    dispatch({
+      type: 'home/createPermission',
+      payload: _request
+    });
+    setOpenModal(false);
+  };
   useEffect(() => {
     dispatch(homePageBegin())
     dispatch({type: 'home/homePageLoad', payload:{IPage:1, PageSize:100}});
@@ -56,7 +65,7 @@ const sessionId = '75696835-8527-4eda-8bea-607ef19affb9';
   
   return (
     <>
-    <CreateUserPermissionModal/>
+    <CreateUserPermissionModal onHadler={handleSave} open={openModal} handleOpen={()=>setOpenModal(!openModal)} />
         <div className="sm:px-6 w-full">
                     <div className="px-4 md:px-10 py-4 md:py-7">
                         <div className="flex items-center justify-between">
@@ -76,7 +85,7 @@ const sessionId = '75696835-8527-4eda-8bea-607ef19affb9';
                             <div className="flex items-center">
                             </div>
                             <button 
-                            //onClick={popuphandler(true)}
+                            onClick={()=>setOpenModal(true)}
                             className="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 mt-4 sm:mt-0 inline-flex items-start justify-start px-6 py-3 bg-indigo-700 hover:bg-indigo-600 focus:outline-none rounded">
                                 <p className="text-sm font-medium leading-none text-white">Add Permission</p>
                             </button>
@@ -87,8 +96,8 @@ const sessionId = '75696835-8527-4eda-8bea-607ef19affb9';
                                     {
                                         dataPermissions && dataPermissions.map((item:UserPermissionResponseModel)=>{
                                                return   (
-                                                <>
-                                                        <tr tabIndex={0}className="focus:outline-none h-16 border border-gray-100 rounded" key={item.id}>
+                                                <div key={item.id}>
+                                                        <tr tabIndex={0}className="focus:outline-none h-16 border border-gray-100 rounded" >
                                                     <td>
                                                         <div className="ml-5">
                                                             <div className="bg-gray-200 rounded-sm w-5 h-5 flex flex-shrink-0 justify-center items-center relative">
@@ -154,7 +163,7 @@ const sessionId = '75696835-8527-4eda-8bea-607ef19affb9';
                                                     </td>
                                                 </tr>
                                                 <tr className="h-3"></tr>
-                                                </>
+                                                </div>
                                                 )
                                         })
                                     }

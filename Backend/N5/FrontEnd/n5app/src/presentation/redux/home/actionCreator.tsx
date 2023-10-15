@@ -3,13 +3,12 @@ import {container} from 'tsyringe';
 import {call, put, takeLatest} from 'redux-saga/effects';
 import { homePageSuccess } from './reducers';
 import ICreateUserPermissionApplication from '../../../domain/interfaces/application/ICreateUserPermissionApplication';
-import { ICreateUserPermissionInfrastructureType, IGetUserPermissionApplicationType, IGetUserPermissionInfrastructureType } from '../../../domain/types/IHomeType';
+import {  ICreateUserPermissionApplicationType, IGetUserPermissionApplicationType, IGetUserPermissionInfrastructureType } from '../../../domain/types/IHomeType';
 import IGetUserPermissionApplication from '../../../domain/interfaces/application/IGetUserPermissionApplication';
 import GetUserPermissionResponseModel from '../../../domain/home/model/GetUserPermissionResponseModel';
 
 function* homePage(request:any): any {
   try {
-    console.log('trying...')
     const homeApplication =
       container.resolve<IGetUserPermissionApplication>(IGetUserPermissionApplicationType);
     const response :GetUserPermissionResponseModel = yield call(
@@ -25,13 +24,16 @@ function* homePage(request:any): any {
 }
 function* createPermission(request:any): any {
   try {
+
     const homeApplication =
-      container.resolve<ICreateUserPermissionApplication>(IGetUserPermissionInfrastructureType);
+      container.resolve<ICreateUserPermissionApplication>(ICreateUserPermissionApplicationType);
     const response = yield call(
-      async () => await homeApplication.handler(request),
+      async () => await homeApplication.handler(request.payload),
     );
-    yield put(homePageSuccess(response));
+    console.log('response:::',response)
+    // yield put(homePageSuccess(response));
   } catch (ex) {
+    console.log('eerxception')
     console.error(ex);
   }
 }

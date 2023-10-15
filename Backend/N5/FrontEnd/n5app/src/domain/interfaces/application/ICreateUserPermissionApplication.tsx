@@ -1,5 +1,5 @@
-import RequestHome from "../../home/model/requestHome";
+import { CreateUserPermissionModel } from "../../home/model/CreateUserPermissionModel";
 
 export default interface ICreateUserPermissionApplication {
-  handler: (request: RequestHome) => Promise<any>;
+  handler: (request: CreateUserPermissionModel) => Promise<any>;
 }

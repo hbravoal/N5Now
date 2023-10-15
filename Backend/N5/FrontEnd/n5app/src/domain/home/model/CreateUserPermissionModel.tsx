@@ -1,4 +1,4 @@
-export interface CreateUserPermissionDto {
+export interface CreateUserPermissionModel {
     IdSession: string
     EmployeeForename: string
     EmployeeSurname: string

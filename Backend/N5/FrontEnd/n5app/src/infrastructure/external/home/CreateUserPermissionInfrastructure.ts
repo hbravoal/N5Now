@@ -10,8 +10,8 @@ export default class CreateUserPermissionInfrastructure
 {
   public async Execute(_request: CreateUserPermissionDto): Promise<CreateUserPermissionResponseDto> {
 
-    return await this.post<any>(
-      `/V${USER_CONFIGURATION_PROXY_BASE}${USER_CONFIGURATION_PROXY_CREATE_PERMISSION}`,
+    return await this.post<CreateUserPermissionDto>(
+      `${USER_CONFIGURATION_PROXY_CREATE_PERMISSION}`,
       _request,
     );
   }
