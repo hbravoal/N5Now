@@ -1,4 +1,3 @@
-using OpenTelemetry;
 using OpenTelemetry.Trace;
 using OpenTelemetry.Resources;
 using Microsoft.Extensions.Configuration;
@@ -8,8 +7,6 @@ using Microsoft.Extensions.Logging;
 using OpenTelemetry.Exporter;
 using OpenTelemetry.Logs;
 using OpenTelemetry.Metrics;
-using OpenTelemetry.Resources;
-using OpenTelemetry.Trace;
 
 namespace N5.Telemetry.Observability;
 
@@ -66,4 +63,47 @@ public static class OpenTelemetry
             });
         });
     }
+    
+    public static void AddOpenTelemetryServices(this IServiceCollection services, IConfiguration configuration)
+    {
+        var otlpEndpoint = configuration.GetValue<string>("OpenTelemetry:OtlpExporterEndpoint") ?? "http://localhost:4317";
+
+        // Configuración de rastreo
+        services.AddOpenTelemetry()
+            .WithTracing(builder => builder
+                .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService("serviceApp"))
+                .AddAspNetCoreInstrumentation()
+                .AddOtlpExporter(exporter =>
+                {
+                    exporter.Endpoint = new Uri(otlpEndpoint);
+                    exporter.Protocol = OtlpExportProtocol.Grpc; 
+                }))
+            .WithMetrics(builder => builder
+                .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService("serviceApp"))
+                .AddRuntimeInstrumentation()
+                .AddPrometheusExporter() 
+                );
+    }
+
+
+    public static void AddLoggingWithOpenTelemetry(this IHostBuilder builder, IConfiguration configuration)
+    {
+        var otlpEndpoint = configuration.GetValue<string>("OpenTelemetry:OtlpExporterEndpoint") ?? "http://localhost:4317";
+
+        builder.ConfigureLogging(logging =>
+        {
+            logging.ClearProviders();
+            logging.AddOpenTelemetry(options =>
+            {
+                options.IncludeFormattedMessage = true;
+                options.SetResourceBuilder(ResourceBuilder.CreateDefault().AddService("serviceApp"));
+                options.AddOtlpExporter(exporter =>
+                {
+                    exporter.Endpoint = new Uri(otlpEndpoint);
+                    exporter.Protocol = OtlpExportProtocol.Grpc;
+                });
+            });
+        });
+    }
+    
 }

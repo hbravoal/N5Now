@@ -20,11 +20,11 @@ public class PermissionController : Controller
     //private readonly IBroker _broker;
     //private readonly SocketHandler _SocketHandler;
     //public PermissionController(IRequestReplyExecute requestReply, IBroker broker, SocketHandler osck) => (_requestReply,_broker, _SocketHandler) = (requestReply,broker, osck);
-    private readonly Tracer _tracer;
+    
 
-    public PermissionController(IRequestReplyExecute requestReply,TracerProvider tracerProvider)
+    public PermissionController(IRequestReplyExecute requestReply)
     {
-        _tracer = tracerProvider.GetTracer("serviceApp");
+        
         _requestReply = requestReply;
     }
         
@@ -33,7 +33,6 @@ public class PermissionController : Controller
         // Simulando trabajo
         System.Threading.Thread.Sleep(100);
     }
-    
     [HttpPost]
     [Route("JustCreate")]
     [ProducesResponseType((int)HttpStatusCode.BadRequest)]
@@ -49,14 +48,7 @@ public class PermissionController : Controller
             // Lógica de negocio
             DoSomething();
         }
-        using (var span = _tracer.StartSpan("ProcessRequest"))
-        {
-            // Lógica de procesamiento de la solicitud aquí
-            // Puedes agregar atributos a la traza
-            span.SetAttribute("request.id", Guid.NewGuid().ToString());
-
-            // Llamadas a otros servicios, lógica de negocio, etc.
-        }
+      
         
         var h = SocketHandler.GetInstance();
         var newSocket = h.GetSocketId(Guid.Parse("30a031bb-349c-4421-a387-ee50b1a3bf44"));

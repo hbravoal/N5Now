@@ -23,7 +23,7 @@ internal class ReplyContainerRepository : IReplyContainerRepository
 
     public Task DeleteReplyAsync(string idSession)
      => _context._replyCollection.DeleteManyAsync(x => x.IdSession == idSession);
-
+ 
     public async Task<IReply> GetReplyByIdSessionAsync(string idSession, string topic)
         => _context._replyCollection.Find(x => x.IdSession == idSession && x.Topic == topic).FirstOrDefault() as IReply;
 
