@@ -703,7 +703,10 @@
           "Microsoft.Extensions.Hosting": "7.0.0"
         },
         "runtime": {
-          "N5.Eda.dll": {}
+          "N5.Eda.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "N5.Utilities/1.0.0": {
@@ -717,7 +720,10 @@
           "Newtonsoft.Json": "13.0.1"
         },
         "runtime": {
-          "N5.Utilities.dll": {}
+          "N5.Utilities.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }

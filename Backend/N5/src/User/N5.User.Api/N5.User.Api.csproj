@@ -27,6 +27,8 @@
     <ProjectReference Include="..\..\Architecture\N5.Eda\N5.Eda.csproj" />
     <ProjectReference Include="..\..\Architecture\N5.Event\N5.Event.csproj" />
     <ProjectReference Include="..\..\Architecture\N5.TryCatch\N5.TryCatch.csproj" />
+    <ProjectReference Include="..\..\N5.Telemetry\N5.Telemetry.csproj" />
+    <ProjectReference Include="..\..\Observability\N5.Telemetry\N5.Telemetry.csproj" />
     <ProjectReference Include="..\N5.Microservice.User\N5.User.Domain\N5.User.Domain.csproj" />
   </ItemGroup>
 

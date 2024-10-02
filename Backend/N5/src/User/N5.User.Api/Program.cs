@@ -11,6 +11,7 @@ using MongoDB.Driver;
 using System.Net.WebSockets;
 using System.Net;
 using System.Text;
+using N5.Telemetry.Observability;
 
 var AppName = "N5.User.Api";
 
@@ -48,6 +49,8 @@ try
     //builder.Services.AddSingleton<ChatWebSocketHandler>();
     builder.Services.AddSingleton<WebSocketConnectionManager>();
     builder.Services.AddSingleton<SocketHandler>();
+    builder.Services.AddTracing(builder.Configuration);
+    builder.Services.AddMetrics(builder.Configuration);
 
     var app = builder.Build();
     app.MapHealthChecks("/healthz");

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Diagnostics.Metrics;
+using Microsoft.AspNetCore.Mvc;
 using N5.Eda.Interfaces;
 using N5.Eda.RequestReply.Interface;
 using N5.Event.User;
@@ -8,9 +9,9 @@ using N5.User.Domain.DTO;
 using System.Net;
 using System.Net.WebSockets;
 using System.Text;
-
+using OpenTelemetry.Trace;
 namespace N5.User.Api.Controllers;
-
+using System.Diagnostics;
 [ApiController]
 [Route("api/[controller]")]
 public class PermissionController : Controller
@@ -19,16 +20,44 @@ public class PermissionController : Controller
     //private readonly IBroker _broker;
     //private readonly SocketHandler _SocketHandler;
     //public PermissionController(IRequestReplyExecute requestReply, IBroker broker, SocketHandler osck) => (_requestReply,_broker, _SocketHandler) = (requestReply,broker, osck);
+    private readonly Tracer _tracer;
 
-    public PermissionController(IRequestReplyExecute requestReply) => (_requestReply) = (requestReply);
-
+    public PermissionController(IRequestReplyExecute requestReply,TracerProvider tracerProvider)
+    {
+        _tracer = tracerProvider.GetTracer("serviceApp");
+        _requestReply = requestReply;
+    }
+        
+    private void DoSomething()
+    {
+        // Simulando trabajo
+        System.Threading.Thread.Sleep(100);
+    }
+    
     [HttpPost]
     [Route("JustCreate")]
     [ProducesResponseType((int)HttpStatusCode.BadRequest)]
     [ProducesResponseType(typeof(CreatePermissionCompleteDTO), (int)HttpStatusCode.OK)]
     public async Task<IActionResult> JustCreate([FromBody] CreatePermissionDto request)
     {
+        using (var activity = new Activity("ProcessRequest").Start())
+        {
+            // Aquí agregas lógica de procesamiento de la solicitud
+            // Puedes agregar atributos a la traza
+            activity.SetTag("request.id", Guid.NewGuid().ToString());
 
+            // Lógica de negocio
+            DoSomething();
+        }
+        using (var span = _tracer.StartSpan("ProcessRequest"))
+        {
+            // Lógica de procesamiento de la solicitud aquí
+            // Puedes agregar atributos a la traza
+            span.SetAttribute("request.id", Guid.NewGuid().ToString());
+
+            // Llamadas a otros servicios, lógica de negocio, etc.
+        }
+        
         var h = SocketHandler.GetInstance();
         var newSocket = h.GetSocketId(Guid.Parse("30a031bb-349c-4421-a387-ee50b1a3bf44"));
         if (newSocket is not null)

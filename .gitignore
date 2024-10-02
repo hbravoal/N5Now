@@ -40,3 +40,15 @@ Backend/N5/src/Architecture/N5.Domain/obj/
 Backend/N5/src/Architecture/N5.Event/bin/
 
 Backend/N5/src/Architecture/N5.Event/obj/
+
+Backend/N5/src/Architecture/N5.Eda/bin/
+
+Backend/N5/src/Architecture/N5.Eda/obj/
+
+Backend/N5/src/Architecture/N5.TryCatch/bin/
+
+Backend/N5/src/Architecture/N5.TryCatch/obj/
+
+Backend/N5/src/Architecture/N5.Utilities/bin/
+
+Backend/N5/src/Architecture/N5.Utilities/obj/
