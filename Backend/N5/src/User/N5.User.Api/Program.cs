@@ -8,6 +8,9 @@ using N5.Eda.RequestReply.Extension;
 using N5.Event.User;
 using N5.Telemetry.Observability;
 using N5.User.Api.Middleware;
+using OpenTelemetry.Exporter;
+using OpenTelemetry;
+using OpenTelemetry.Trace;
 
 var AppName = "N5.User.Api";
 
@@ -48,6 +51,14 @@ try
 
     // Configuración de OpenTelemetry
     builder.Services.AddOpenTelemetryServices(builder.Configuration);
+
+
+    builder.Services.AddTransient<TelemetryTracker>(provider =>
+    {
+        var tracerProvider = provider.GetRequiredService<TracerProvider>();
+        var logger = provider.GetRequiredService<ILogger<TelemetryTracker>>();
+        return new TelemetryTracker(tracerProvider, logger);
+    });
 
     var app = builder.Build();
     app.MapHealthChecks("/healthz");
