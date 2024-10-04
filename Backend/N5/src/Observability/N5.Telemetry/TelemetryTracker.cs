@@ -28,16 +28,20 @@ public class TelemetryTracker
     /// </summary>
     public Activity TrackActivity(string activityName, Action<Activity> action = null)
     {
-        var activity = _activitySource.StartActivity(activityName, ActivityKind.Internal);  // Usar ActivitySource para crear actividades
-
-        if (activity != null)
+        using (var activity = new Activity(activityName).Start())
         {
+            // Aquí agregas lógica de procesamiento de la solicitud
+            // Puedes agregar atributos a la traza
+            activity.SetTag("request.id", Guid.NewGuid().ToString());
+
             action?.Invoke(activity);  // Permite realizar acciones adicionales dentro de la actividad
             activity.SetEndTime(DateTime.UtcNow);
             activity.Stop();
+            // Lógica de negocio
+            return activity;
+
         }
 
-        return activity;
     }
 
     /// <summary>

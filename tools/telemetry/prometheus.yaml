@@ -1,0 +1,20 @@
+global:
+  scrape_interval: 15s  # Intervalo global de scraping
+
+scrape_configs:
+  # Scraping de métricas de Jaeger
+  - job_name: 'jaeger'
+    static_configs:
+      - targets: ['jaeger:14269']  # Puerto de métricas Prometheus de Jaeger
+
+  # Scraping de métricas de OpenTelemetry Collector
+  - job_name: 'opentelemetry-collector'
+    static_configs:
+      - targets: ['opentelemetry-collector:8889']  # Puerto donde OTEL expone métricas Prometheus
+
+  # Scraping de métricas de tu aplicación
+  - job_name: 'my_app_metrics'
+    scheme: https
+    tls_config:
+      insecure_skip_verify: true
+    static

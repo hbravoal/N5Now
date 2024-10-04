@@ -1,0 +1,24 @@
+receivers:
+  otlp:
+    protocols:
+      grpc:  # Para recibir datos de trazas/metrics vía gRPC
+      http:  # Para recibir datos vía HTTP
+
+exporters:
+  prometheus:
+    endpoint: "0.0.0.0:8889"  # Expondrá las métricas en el puerto 8889 para que Prometheus haga scraping
+
+  jaeger:
+    endpoint: "jaeger:14250"  # Endpoint de Jaeger para exportar las trazas vía gRPC
+    tls:
+      insecure: true
+
+service:
+  pipelines:
+    traces:
+      receivers: [otlp]  # Recibe trazas desde OTLP
+      exporters: [jaeger]  # Exporta trazas a Jaeger
+
+    metrics:
+      receivers: [otlp]  # Recibe métricas desde OTLP
+      exporters: [prometheus]  # Exporta métricas a Prometheus

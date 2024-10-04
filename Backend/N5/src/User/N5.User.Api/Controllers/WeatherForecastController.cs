@@ -16,6 +16,8 @@ namespace N5.User.Api.Controllers
 
         private readonly ILogger<WeatherForecastController> _logger;
         private readonly TelemetryTracker _telemetryTracker;
+        private static readonly ActivitySource _activitySource = new ActivitySource("serviceApp"); // Usa un nombre único aquí
+
 
         public WeatherForecastController(ILogger<WeatherForecastController> logger, TelemetryTracker telemetryTracker)
         {
