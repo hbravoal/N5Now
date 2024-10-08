@@ -21,10 +21,10 @@ public static class OpenTelemetry
       services.AddOpenTelemetry().WithTracing(builder => builder
           .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService("serviceApp"))
           .AddAspNetCoreInstrumentation()
+          
           .AddOtlpExporter(exporter =>
           {
               exporter.Endpoint = new Uri(otlpEndpoint ?? "http://localhost:4317");
-              exporter.Protocol = OtlpExportProtocol.Grpc; 
           })
       );
   }
@@ -37,7 +37,6 @@ public static class OpenTelemetry
             .AddOtlpExporter(exporter =>
             {
                 exporter.Endpoint = new Uri("http://localhost:4317"); 
-                exporter.Protocol = OtlpExportProtocol.Grpc;
             })
         );
         
@@ -63,7 +62,8 @@ public static class OpenTelemetry
             });
         });
     }
-    
+   
+
     public static void AddOpenTelemetryServices(this IServiceCollection services, IConfiguration configuration)
     {
         var otlpEndpoint = configuration.GetValue<string>("OpenTelemetry:OtlpExporterEndpoint") ?? "http://localhost:4317";
@@ -73,6 +73,7 @@ public static class OpenTelemetry
             .WithTracing(builder => builder
                 .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService("serviceApp"))
                 .AddAspNetCoreInstrumentation()
+                .AddHttpClientInstrumentation()
                 .AddOtlpExporter(exporter =>
                 {
                     exporter.Endpoint = new Uri(otlpEndpoint);
@@ -81,10 +82,8 @@ public static class OpenTelemetry
             .WithMetrics(builder => builder
                 .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService("serviceApp"))
                 .AddRuntimeInstrumentation()
-                .AddPrometheusExporter() 
-                );
+                .AddPrometheusExporter()); // Sin Endpoint aquí
     }
-
 
     public static void AddLoggingWithOpenTelemetry(this IHostBuilder builder, IConfiguration configuration)
     {

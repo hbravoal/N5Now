@@ -53,12 +53,12 @@ try
     builder.Services.AddOpenTelemetryServices(builder.Configuration);
 
 
-    //builder.Services.AddTransient<TelemetryTracker>(provider =>
-    //{
-    //    var tracerProvider = provider.GetRequiredService<TracerProvider>();
-    //    var logger = provider.GetRequiredService<ILogger<TelemetryTracker>>();
-    //    return new TelemetryTracker(tracerProvider, logger);
-    //});
+    builder.Services.AddTransient<TelemetryTracker>(provider =>
+    {
+        var tracerProvider = provider.GetRequiredService<TracerProvider>();
+        var logger = provider.GetRequiredService<ILogger<TelemetryTracker>>();
+        return new TelemetryTracker(tracerProvider, logger);
+    });
 
     var app = builder.Build();
     app.MapHealthChecks("/healthz");

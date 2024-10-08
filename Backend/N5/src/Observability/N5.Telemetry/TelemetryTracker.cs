@@ -26,23 +26,30 @@ public class TelemetryTracker
     /// <summary>
     /// Inicia y registra una actividad de OpenTelemetry.
     /// </summary>
-    public Activity TrackActivity(string activityName, Action<Activity> action = null)
+    public Activity TrackActivity(string activityName, Dictionary<string, object> attributes = null, Action<Activity> action = null)
     {
-        using (var activity = new Activity(activityName).Start())
+        var activity = Activity.Current;
+
+        if (activity == null) return null;
+
+        // Agregar los atributos pasados al método (si los hay)
+        if (attributes != null)
         {
-            // Aquí agregas lógica de procesamiento de la solicitud
-            // Puedes agregar atributos a la traza
-            activity.SetTag("request.id", Guid.NewGuid().ToString());
-
-            action?.Invoke(activity);  // Permite realizar acciones adicionales dentro de la actividad
-            activity.SetEndTime(DateTime.UtcNow);
-            activity.Stop();
-            // Lógica de negocio
-            return activity;
-
+            foreach (var attribute in attributes)
+            {
+                activity.SetTag(attribute.Key, attribute.Value);
+            }
         }
 
+        // Ejecutar cualquier acción adicional
+        action?.Invoke(activity);
+
+        activity.SetEndTime(DateTime.UtcNow);
+        activity.Stop();
+
+        return activity;
     }
+
 
     /// <summary>
     /// Registra un evento dentro de una actividad actual de OpenTelemetry.
@@ -54,23 +61,38 @@ public class TelemetryTracker
             return;
         }
 
-        // Convertir Dictionary a ActivityTagsCollection
         var attributes = eventAttributes != null ? new ActivityTagsCollection(eventAttributes) : null;
 
-        // Crear y agregar el evento a la actividad
         activity.AddEvent(new ActivityEvent(eventName, DateTime.UtcNow, attributes));
+
         _logger.LogInformation("Evento registrado: {eventName} con atributos {attributes}", eventName, eventAttributes);
     }
+
 
 
     /// <summary>
     /// Registra una métrica personalizada en OpenTelemetry.
     /// </summary>
-    public void TrackMetric(string metricName, long value)
+    public void TrackMetric(string metricName, long value, Dictionary<string, string> labels = null)
     {
         var counter = _counters.GetOrAdd(metricName, _meter.CreateCounter<long>(metricName));
-        counter.Add(value);
 
-        _logger.LogInformation("Métrica registrada: {metricName} con valor {value}", metricName, value);
+        // Si hay etiquetas, las incluimos
+        if (labels != null)
+        {
+            var labelSet = new TagList();
+            foreach (var label in labels)
+            {
+                labelSet.Add(label.Key, label.Value);
+            }
+            counter.Add(value, labelSet);
+        }
+        else
+        {
+            counter.Add(value);  // Sin etiquetas
+        }
+
+        _logger.LogInformation("Métrica registrada: {metricName} con valor {value} y etiquetas {labels}", metricName, value, labels);
     }
+
 }
